@@ -29,10 +29,6 @@ server.on('request', (req, res) => {
             sizeStream.destroy();
             fs.unlink(filepath, () => {});
           })
-          .on('finish', () => {
-            res.statusCode = 201;
-            res.end('File was saved');
-          })
           .pipe(sizeStream)
           .on('error', (error) => {
             if (error.code === 'LIMIT_EXCEEDED') {
@@ -54,6 +50,10 @@ server.on('request', (req, res) => {
               res.statusCode = 500;
               res.end('Internal server error');
             }
+          })
+          .on('finish', () => {
+            res.statusCode = 201;
+            res.end('File was saved');
           });
 
       break;
