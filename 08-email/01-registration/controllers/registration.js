@@ -39,5 +39,5 @@ module.exports.confirm = async (ctx, next) => {
   await user.save();
 
   ctx.status = 200;
-  ctx.body = {token: uuid()};
+  ctx.body = {token: await ctx.login(user)};
 };
