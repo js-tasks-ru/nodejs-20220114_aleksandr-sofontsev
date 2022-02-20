@@ -31,7 +31,7 @@ module.exports.confirm = async (ctx, next) => {
 
   if (!user) {
     ctx.status = 400;
-    ctx.body = {error: 'Ссылка недействительна или устарела'};
+    ctx.body = {error: 'Ссылка подтверждения недействительна или устарела'};
     return;
   }
 
